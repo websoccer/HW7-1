@@ -39,16 +39,20 @@ def followLinks(url, numAnchor, numTimes):
     
  
 
-    link_line = int(numAnchor) - 1 #The position of link relative to first link
-    count = int(numTimes) #The number of times to be repeated
-
+   #The position of link relative to first link
+    count = int(numTimes) -1 #The number of times to be repeated
+    urltext = ''
     while count >= 0:
+    
         html = urlopen(url).read()
         soup = BeautifulSoup(html, "html.parser")
         tags = soup('a')
-        print(url)
-        URL = tags[link_line].get("href", None)
-        count = count - 1 
+        url = tags[int(numAnchor) - 1].get("href", None)
+        urltext = tags[int(numAnchor) - 1].text
+        count = count -1
+        
+    print(urltext)
+    return urltext
 
 def getGradeHistogram(url):
     """ return a sorted tuple with the grade range (such as 90, 80, etc) and the number of grades in that range
