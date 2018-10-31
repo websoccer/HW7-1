@@ -7,13 +7,26 @@ import ssl
 import unittest
 
 def getSumSpans(url):
+    
     """ return a sum of all of the text values in the span tags at the passed url
-
+    r
         url -- a uniform resource locator - address for a web page
 
     """
-
-    pass
+    
+    html = urlopen(url).read()
+    soup = BeautifulSoup(html, "html.parser")
+    
+    tags = soup.find_all("span", class_ = "comments")
+    soup.text
+    
+'''
+    sum = 0
+    numbers = [d.text for d in tags]
+    sum = sum + numbers
+    print(sum)
+    return sum
+ '''   
 
 def followLinks(url, numAnchor, numTimes):
     """ Repeat for numTimes. Find the url at numAnchor position (the first link is at position 1) at
