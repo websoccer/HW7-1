@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import ssl
 import unittest
 
+
 def getSumSpans(url):
     
     """ return a sum of all of the text values in the span tags at the passed url
@@ -16,17 +17,14 @@ def getSumSpans(url):
     
     html = urlopen(url).read()
     soup = BeautifulSoup(html, "html.parser")
+    tags = soup('span')
     
-    tags = soup.find_all("span", class_ = "comments")
-    soup.text
+    total = 0
     
-'''
-    sum = 0
-    numbers = [d.text for d in tags]
-    sum = sum + numbers
-    print(sum)
-    return sum
- '''   
+    for tag in tags:
+        total = total + int(tag.text)
+    return total  
+
 
 def followLinks(url, numAnchor, numTimes):
     """ Repeat for numTimes. Find the url at numAnchor position (the first link is at position 1) at
